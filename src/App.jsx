@@ -1,14 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
+import React from 'react'
+import {Outlet} from  'react-router-dom'
+import Header from './components/Header'
+import NavLink from './components/NavLink'
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-    <h1>Hello from music app</h1>
-</>
+    <div className='flex '>
+    <nav className='p-6 h-screen shadow-xl'>
+     <Header/>
+     <h2 className='mt-16 font-black text-gray-600 text-md mb-4 '>Discover</h2>
+      <ul className='flex flex-col gap-14  justify-center items-center'>
+       <NavLink label="home"/>
+       <NavLink label="recent" />
+       <NavLink label="saved"/>
+       <NavLink label="artist"/>
+       <NavLink label="playlists"/>
+       <NavLink label="album"/>
+       
+      </ul>
+    </nav>
+    <Outlet/>
+</div>
   )
 }
 
