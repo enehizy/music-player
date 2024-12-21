@@ -163,10 +163,63 @@ const Recent=({isActive})=>{
 }
 
 const Saved =({isActive})=>{
-    return (<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path  fill={`${isActive?'currentcolor':'none'}`} d="M10.5167 17.3417C10.2334 17.4417 9.76675 17.4417 9.48342 17.3417C7.06675 16.5167 1.66675 13.075 1.66675 7.24168C1.66675 4.66668 3.74175 2.58334 6.30008 2.58334C7.81675 2.58334 9.15842 3.31668 10.0001 4.45001C10.8417 3.31668 12.1917 2.58334 13.7001 2.58334C16.2584 2.58334 18.3334 4.66668 18.3334 7.24168C18.3334 13.075 12.9334 16.5167 10.5167 17.3417Z" stroke="#999999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+    return (
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="none"
+        viewBox="0 0 20 20"
+      >
+        <path
+          fill={`${isActive?'currentcolor':'none'}`} 
+          stroke="#999"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+          d="M10.517 17.342c-.284.1-.75.1-1.034 0-2.416-.825-7.816-4.267-7.816-10.1 0-2.575 2.075-4.659 4.633-4.659 1.517 0 2.858.734 3.7 1.867a4.6 4.6 0 0 1 3.7-1.867c2.558 0 4.633 2.084 4.633 4.659 0 5.833-5.4 9.275-7.816 10.1"
+        ></path>
+      </svg>
         )
+    }
+        const Category=({isActive})=>{
+            return(<svg
+                xmlns="http://www.w3.org/2000/svg"
+               width="20"
+        height="20"
+        fill={`${isActive?'currentcolor':'none'}`} 
+                viewBox="0 0 24 24"
+              >
+                <g id="Iconly/Curved/Category">
+                  <g
+                    id="Category"
+                    fillRule="evenodd"
+                     stroke="#999"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    clipRule="evenodd"
+                  >
+                    <path
+                      id="Stroke 1"
+                      d="M21 6.674a3.674 3.674 0 1 1-7.348-.001 3.674 3.674 0 0 1 7.348 0"
+                    ></path>
+                    <path
+                      id="Stroke 3"
+                      d="M10.347 6.674a3.674 3.674 0 1 1-7.348 0 3.674 3.674 0 0 1 7.348 0"
+                    ></path>
+                    <path
+                      id="Stroke 5"
+                      d="M21 17.262a3.674 3.674 0 1 1-7.347-.001 3.674 3.674 0 0 1 7.347 0"
+                    ></path>
+                    <path
+                      id="Stroke 7"
+                      d="M10.347 17.262a3.673 3.673 0 1 1-7.346 0 3.673 3.673 0 0 1 7.346 0"
+                    ></path>
+                  </g>
+                </g>
+              </svg>)
+        
 }
 function NavLink({label}) {
 const getLinkFromLabel = useMemo(()=>{
@@ -183,6 +236,8 @@ const getLinkFromLabel = useMemo(()=>{
             return "/artist"
         case 'saved':
             return "/saved";
+        case 'categories':
+            return "/categories"
         default:
             return "/404"
     }
@@ -200,6 +255,7 @@ const getLinkFromLabel = useMemo(()=>{
       {label=='album'&&<Album isActive={location.pathname ==getLinkFromLabel}/>}
       {label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/>}
       {label=='saved'&&<Saved isActive={location.pathname ==getLinkFromLabel}/>}
+      {label=='categories'&&<Category isActive={location.pathname ==getLinkFromLabel}/>}
        {label}
    </Link>
       

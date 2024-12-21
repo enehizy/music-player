@@ -3,7 +3,7 @@ import React from 'react'
 function Saved() {
   return (
     <div>
-      saved page
+      <h1 className='text-4xl'>saved page</h1>
     </div>
   )
 }

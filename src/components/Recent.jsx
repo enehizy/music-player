@@ -3,7 +3,7 @@ import React from 'react'
 function Recent() {
   return (
     <div>
-      recent page
+     <h1 className='text-4xl'>Recent page</h1>
     </div>
   )
 }

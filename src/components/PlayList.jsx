@@ -3,7 +3,7 @@ import React from 'react'
 function PlayList() {
   return (
     <div>
-      playlist page
+     <h1 className='text-4xl'>playlist page</h1>
     </div>
   )
 }

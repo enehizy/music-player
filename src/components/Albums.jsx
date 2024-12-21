@@ -3,7 +3,7 @@ import React from 'react'
 function Albums() {
   return (
     <div>
-      Album page
+    <h1 className='text-4xl'>albums page </h1>
     </div>
   )
 }
