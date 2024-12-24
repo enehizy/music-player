@@ -99,7 +99,14 @@ const Album=({isActive})=>{{
         ></path>
       </svg>)
 }}
-
+const Trending =({isActive})=>{
+    return(
+        <svg xmlns="http://www.w3.org/2000/svg" fill='none' viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+        <path   stroke={`${isActive?'white':'#999'}`} strokeLinecap="round" strokeLinejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+      </svg>
+      
+    )
+}
 const PlayList =({isActive})=>{
     return (<svg
         xmlns="http://www.w3.org/2000/svg"
@@ -135,53 +142,53 @@ const PlayList =({isActive})=>{
       </svg>)
 }
 
-const Recent=({isActive})=>{
-    return( <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill={`${isActive?'currentcolor':'none'}`}
-        viewBox="0 0 20 20"
-      >
-        <path
-          stroke="#999"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          fill={`${isActive?'currentcolor':'none'}`}
-          d="M18.333 10c0 4.6-3.733 8.333-8.333 8.333A8.336 8.336 0 0 1 1.667 10C1.667 5.4 5.4 1.667 10 1.667S18.333 5.4 18.333 10"
-        ></path>
-        <path
-          stroke="#999"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          fill={`${isActive?'currentcolor':'none'}`}
-          d="m13.092 12.65-2.584-1.542c-.45-.266-.816-.908-.816-1.433V6.258"
-        ></path>
-      </svg>)
-}
+// const Recent=({isActive})=>{
+//     return( <svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         width="20"
+//         height="20"
+//         fill={`${isActive?'currentcolor':'none'}`}
+//         viewBox="0 0 20 20"
+//       >
+//         <path
+//           stroke="#999"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           fill={`${isActive?'currentcolor':'none'}`}
+//           d="M18.333 10c0 4.6-3.733 8.333-8.333 8.333A8.336 8.336 0 0 1 1.667 10C1.667 5.4 5.4 1.667 10 1.667S18.333 5.4 18.333 10"
+//         ></path>
+//         <path
+//           stroke="#999"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           fill={`${isActive?'currentcolor':'none'}`}
+//           d="m13.092 12.65-2.584-1.542c-.45-.266-.816-.908-.816-1.433V6.258"
+//         ></path>
+//       </svg>)
+// }
 
-const Saved =({isActive})=>{
-    return (
-        <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill="none"
-        viewBox="0 0 20 20"
-      >
-        <path
-          fill={`${isActive?'currentcolor':'none'}`} 
-          stroke="#999"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          d="M10.517 17.342c-.284.1-.75.1-1.034 0-2.416-.825-7.816-4.267-7.816-10.1 0-2.575 2.075-4.659 4.633-4.659 1.517 0 2.858.734 3.7 1.867a4.6 4.6 0 0 1 3.7-1.867c2.558 0 4.633 2.084 4.633 4.659 0 5.833-5.4 9.275-7.816 10.1"
-        ></path>
-      </svg>
-        )
-    }
+// const Saved =({isActive})=>{
+//     return (
+//         <svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         width="20"
+//         height="20"
+//         fill="none"
+//         viewBox="0 0 20 20"
+//       >
+//         <path
+//           fill={`${isActive?'currentcolor':'none'}`} 
+//           stroke="#999"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           d="M10.517 17.342c-.284.1-.75.1-1.034 0-2.416-.825-7.816-4.267-7.816-10.1 0-2.575 2.075-4.659 4.633-4.659 1.517 0 2.858.734 3.7 1.867a4.6 4.6 0 0 1 3.7-1.867c2.558 0 4.633 2.084 4.633 4.659 0 5.833-5.4 9.275-7.816 10.1"
+//         ></path>
+//       </svg>
+//         )
+//     }
         const Category=({isActive})=>{
             return(<svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -226,16 +233,18 @@ const getLinkFromLabel = useMemo(()=>{
     switch (label){
         case 'home':
             return '/';
-        case 'playlists':
-            return "/playlists"
+        // case 'playlists':
+        //     return "/playlists"
         case 'album':
             return "/album";
-        case 'recent':
-            return "/recent";
+        // case 'recent':
+        //     return "/recent";
         case 'artist':
             return "/artist"
-        case 'saved':
-            return "/saved";
+        // case 'saved':
+        //     return "/saved";
+        case 'trending':
+            return '/trending'
         case 'categories':
             return "/categories"
         default:
@@ -251,11 +260,12 @@ const getLinkFromLabel = useMemo(()=>{
   
    {label=='home'&&<Home isActive={location.pathname ==getLinkFromLabel}/>}
       {label=='artist'&&<Artist isActive={location.pathname ==getLinkFromLabel}/>}
-      {label=='playlists'&&<PlayList isActive={location.pathname ==getLinkFromLabel}/>}
+      {/* {label=='playlists'&&<PlayList isActive={location.pathname ==getLinkFromLabel}/>} */}
       {label=='album'&&<Album isActive={location.pathname ==getLinkFromLabel}/>}
-      {label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/>}
-      {label=='saved'&&<Saved isActive={location.pathname ==getLinkFromLabel}/>}
+      {/* {label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/>}
+      {label=='saved'&&<Saved isActive={location.pathname ==getLinkFromLabel}/>} */}
       {label=='categories'&&<Category isActive={location.pathname ==getLinkFromLabel}/>}
+      {label=='trending'&&<Trending isActive={location.pathname ==getLinkFromLabel}/> }
        {label}
    </Link>
       

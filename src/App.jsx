@@ -18,18 +18,22 @@ function App() {
         <h2 className='mt-16 font-black text-gray-600 text-md mb-4 '>Discover</h2>
           <ul className='flex flex-col gap-14  justify-center items-center'>
           <NavLink label="home"/>
-          <NavLink label="recent" />
-          <NavLink label="saved"/>
+          <NavLink label="trending"/>
+          {/* <NavLink label="recent" />
+          <NavLink label="saved"/> */}
           <NavLink label="artist"/>
-          <NavLink label="playlists"/>
+          {/* <NavLink label="playlists"/> */}
+       
           <NavLink label="album"/>
           <NavLink label="categories"/>
           </ul>
+         
+       
         </nav>
         
-        <main className='   overflow-scroll h-screen w-full'>
-
-  
+        <main className='   overflow-scroll h-screen w-full pb-20'>
+        {/* <div className='p-10 shadow-md '><button className=' bg-[#1DB954] rounded-xl  font-bold text-sm p-2'>Login with spotify</button>
+        </div> */}
             <Outlet/>
 
         </main>
