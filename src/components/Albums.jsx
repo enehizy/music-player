@@ -3,6 +3,9 @@ import React from 'react';
 import {getPopularArtistInfo,generateToken} from '../utils'
 import axios from 'axios';
 import PageHeader from './PageHeader';
+import { Link } from 'react-router-dom';
+import Loading from './Loading';
+
 
 function Albums() {
   let {data,isError,isLoading,isSuccess} =useQuery({
@@ -30,13 +33,13 @@ function Albums() {
   return (
     <div>
       <PageHeader label="New Released Albums"/>
-   {isLoading&&('loading albums')}
+   {isLoading&&(<Loading/>)}
    {isError&&('error finding albums')}
    {isSuccess&&(<>
    
     <div className='grid md:grid-cols-3 2xl:grid-cols-4 gap-20 px-20'>
          {data.map((album)=>(
-          <div className='flex cursor-pointer flex-col justify-center items-center gap-3 w-[300px] aspect-auto'>    
+          <Link to={album.id} className='flex cursor-pointer flex-col justify-center items-center gap-3 w-[300px] aspect-auto'>    
 
 
 
@@ -51,7 +54,7 @@ function Albums() {
               <p className='font-black text-lg text-gray-500'>Total Tracks :{album.total_tracks}</p>
               
               
-          </div>
+          </Link>
         
          ))}
            </div>

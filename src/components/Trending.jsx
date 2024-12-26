@@ -3,6 +3,7 @@ import React from 'react'
 import { generateToken } from '../utils'
 import axios from 'axios'
 import PageHeader from './PageHeader'
+import Loading from './Loading'
 function Trending() {
     let {data,isError,isLoading,isSuccess} =useQuery({
         queryKey:['albums'],
@@ -30,7 +31,7 @@ function Trending() {
   return (
     <div>
         <PageHeader label="Trending Singles"/>
-     {isLoading&&('loading trending data')}
+     {isLoading&&(<Loading/>)}
      {isError&&('error fetching trending data')}
      {isSuccess&&(
         <div className='grid grid-cols-3 gap-20 px-20'>

@@ -5,10 +5,10 @@ import { useQueries,useQuery } from '@tanstack/react-query';
 
 import { Link, useLocation } from 'react-router-dom';
 import PageHeader from './PageHeader';
-function convertMillisecondsToMinutes(milliseconds, significantDigits = 3) {
-    const minutes = milliseconds / 60000;
-    return minutes.toPrecision(significantDigits);  
-}
+import TrackTable from './TrackTable';
+import Loading from './Loading';
+
+
 
 
 function Home() {
@@ -60,7 +60,7 @@ function Home() {
     //     window.location.href = authUrl;
     // }
     // },[])
-    const [recomendations,artists,albums] = useQueries({queries:[{
+    const allData= useQueries({queries:[{
         queryKey:['recommendations'],
         queryFn: async()=>{
            try {
@@ -113,50 +113,28 @@ function Home() {
             
           
     ]})
+    const [recomendations,artists,albums] =allData;
+    const isError =allData.some((data)=>data.isError)
+    const isLoading =allData.some((data)=>data.isLoading)
    return(<div>
     <PageHeader label="Recommended Songs"/>
-    {recomendations.isLoading&&('loading reccommended songs')}
-    {recomendations.isError&&('error finding recommendations')}
+    
+    {isLoading&&(<Loading/>)}
+    {isError&&('error finding recommendations')}
     {recomendations.isSuccess&&(
-        <table className="w-[95%]  border-separate border-spacing-4  pl-6 -mt-6" >
-        <thead>
-            <tr className='text-left'>
-                <th></th>
-               <th></th>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Duration</th>
-            </tr>
-        </thead>
-        <tbody >
-       
-        {recomendations.data.map((track,index)=>(
-        <tr key={index} className='transition-all shadow-md hover:shadow-[#8568f5] font-semibold text-gray-500 '>
-            <td className='font-black'>{index +1}</td>
-            <td><img className='w-10 h-10' src={track.album.images[0].url}/></td>
-           
-            <td>{track.name}</td>
-            <td className='text-[#8568f5]'>{track.artists.map((artist)=>(
-                <span>{artist.name} ,</span>
-            ))} </td>
-            <td className=''>{convertMillisecondsToMinutes(track.duration_ms)}</td>
-        </tr> 
-        ))}
-        
-        </tbody>
-    </table>
+    
+    <TrackTable tracks={recomendations.data} />
     )}
 
-{artists.isLoading&&('loading artists')}
-{artists.isError&&('error finding artists')}
+
 {artists.isSuccess&&(
     <>
-    <div className='mt-10 mx-10 mb-5 flex justify-between items-center'>
+    <div className='mt-10 mx-10 mb-5 flex flex-wrap-reverse justify-between items-center'>
     <h2 className='font-semibold text-2xl text-gray-600 '>Recommended Artists</h2>
-    <Link className='text-[#8568f5] font-bold' to="/artist">See All</Link>
+    <Link className='text-[#8568f5] font-bold 2xl:-translate-x-[100px]' to="/artist">See All</Link>
     </div>
     
-   <div className='flex px-10 gap-5'>
+   <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4  px-10 gap-5'>
   
     {artists.data.map((artist)=>(
         <div className='w-[200px]  gap-3 aspect-auto flex flex-col justify-center items-center'>
@@ -169,15 +147,14 @@ function Home() {
 )}
 
 
-{albums.isLoading&&('loading albums')}
-{albums.isError&&('error finding albums')}
+
 {albums.isSuccess&&(
     <div className='mt-10  mx-10'>
         <div className='mt-10  mb-5 flex justify-between items-center'>
         <h2 className='font-semibold text-2xl text-gray-600 '>Recommended Albums</h2>
-        <Link className='text-[#8568f5] font-bold' to="/album">See All</Link>
+        <Link className='text-[#8568f5] font-bold 2xl:-translate-x-[100px]' to="/album">See All</Link>
         </div>
-        <div className='flex gap-4 '>
+        <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 '>
             {albums.data.map((album)=>(
             <div className='w-[200px] aspect-auto flex flex-col gap-3 justify-center items-center'>
                 <img src={album.images[0].url} />

@@ -235,12 +235,12 @@ const getLinkFromLabel = useMemo(()=>{
             return '/';
         // case 'playlists':
         //     return "/playlists"
-        case 'album':
-            return "/album";
+        case 'albums':
+            return "/albums";
         // case 'recent':
         //     return "/recent";
-        case 'artist':
-            return "/artist"
+        case 'artists':
+            return "/artists"
         // case 'saved':
         //     return "/saved";
         case 'trending':
@@ -252,19 +252,34 @@ const getLinkFromLabel = useMemo(()=>{
     }
 },[])
   let location = useLocation();
-  
+  let getRegexForLink=React.useMemo(()=>{
+    switch (label){
+        case 'albums':
+            return /^\/albums(\/[a-zA-Z0-9]*)?$/;
+        case 'artists':
+            return /^\/artists(\/[a-zA-Z0-9]*)?$/
+        case 'categories':
+            return /^\/categories(\/[a-zA-Z0-9]*)?$/
+        default:
+            return /^$/;
+    }
 
+ 
+  })
+
+  
+ 
   return (
    <li className='grow'> 
-   <Link to={getLinkFromLabel}className={`flex px-16 py-1 grow font-bold  gap-2  justify-center items-center capitalize ${location.pathname ==getLinkFromLabel&& 'bg-white rounded-xl  text-white bg-gradient-to-r from-[#3dc3c0] to-[#8568f5] '}`}>
+   <Link to={getLinkFromLabel}className={`flex px-16 py-1 grow font-bold  gap-2  justify-center items-center capitalize ${location.pathname ==getLinkFromLabel||getRegexForLink.test(location.pathname)? 'bg-white rounded-xl  text-white bg-gradient-to-r from-[#3dc3c0] to-[#8568f5] ':''}`}>
   
    {label=='home'&&<Home isActive={location.pathname ==getLinkFromLabel}/>}
-      {label=='artist'&&<Artist isActive={location.pathname ==getLinkFromLabel}/>}
+      {label=='artists'&&<Artist isActive={location.pathname ==getLinkFromLabel || getRegexForLink.test(location.pathname)}/>}
       {/* {label=='playlists'&&<PlayList isActive={location.pathname ==getLinkFromLabel}/>} */}
-      {label=='album'&&<Album isActive={location.pathname ==getLinkFromLabel}/>}
+      {label=='albums'&&<Album isActive={(location.pathname ==getLinkFromLabel) || getRegexForLink.test(location.pathname)}/>}
       {/* {label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/>}
       {label=='saved'&&<Saved isActive={location.pathname ==getLinkFromLabel}/>} */}
-      {label=='categories'&&<Category isActive={location.pathname ==getLinkFromLabel}/>}
+      {label=='categories'&&<Category isActive={location.pathname ==getLinkFromLabel || getRegexForLink.test(location.pathname)}/>}
       {label=='trending'&&<Trending isActive={location.pathname ==getLinkFromLabel}/> }
        {label}
    </Link>

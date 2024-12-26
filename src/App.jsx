@@ -13,7 +13,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
           <div className='flex '>
-        <nav className='p-6 h-screen shadow-xl '>
+        <nav className='p-6 h-screen shadow-xl hidden md:block'>
         <Header/>
         <h2 className='mt-16 font-black text-gray-600 text-md mb-4 '>Discover</h2>
           <ul className='flex flex-col gap-14  justify-center items-center'>
@@ -21,10 +21,10 @@ function App() {
           <NavLink label="trending"/>
           {/* <NavLink label="recent" />
           <NavLink label="saved"/> */}
-          <NavLink label="artist"/>
+          <NavLink label="artists"/>
           {/* <NavLink label="playlists"/> */}
        
-          <NavLink label="album"/>
+          <NavLink label="albums"/>
           <NavLink label="categories"/>
           </ul>
          
