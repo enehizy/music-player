@@ -1,5 +1,5 @@
 import React from 'react'
-import {Outlet} from  'react-router-dom'
+import {Outlet, useNavigate} from  'react-router-dom'
 import Header from './components/Header'
 import NavLink from './components/NavLink'
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
@@ -8,7 +8,7 @@ const queryClient = new QueryClient()
 
 
 function App() {
-
+const navigate =useNavigate()
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -31,11 +31,22 @@ function App() {
        
         </nav>
         
-        <main className='   overflow-scroll h-screen w-full pb-20'>
+        <main className='   overflow-scroll h-screen w-full pb-20 '>
         {/* <div className='p-10 shadow-md '><button className=' bg-[#1DB954] rounded-xl  font-bold text-sm p-2'>Login with spotify</button>
         </div> */}
-            <Outlet/>
+               <button onClick={()=> navigate(-1)} className='absolute  top-5  font-black  bg-[#8568f5] text-white rounded-full p-1 translate-x-7'>
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
 
+
+
+
+
+
+        </button>
+            <Outlet/>
+            
         </main>
         
     </div>
