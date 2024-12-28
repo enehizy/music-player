@@ -39,10 +39,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="recent" element={<Recent/>}/> */}
        
           
-        <Route path="categories" >
-          <Route index element={<Categories/>}/>
-           <Route path=':id' element={<Category/>}/>
-        </Route>
+        
       </Route>
       <Route path="*" element={<NotFound/>}/>
      </Routes>

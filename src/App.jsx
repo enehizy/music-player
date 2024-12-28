@@ -27,7 +27,7 @@ function App() {
           {/* <NavLink label="playlists"/> */}
        
           <NavLink label="albums"/>
-          <NavLink label="categories"/>
+          
           </ul>
          
        

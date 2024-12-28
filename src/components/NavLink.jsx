@@ -245,8 +245,7 @@ const getLinkFromLabel = useMemo(()=>{
         //     return "/saved";
         case 'trending':
             return '/trending'
-        case 'categories':
-            return "/categories"
+       
         default:
             return "/404"
     }
@@ -258,8 +257,7 @@ const getLinkFromLabel = useMemo(()=>{
             return /^\/albums(\/[a-zA-Z0-9]*)?$/;
         case 'artists':
             return /^\/artists(\/[a-zA-Z0-9]*)?$/
-        case 'categories':
-            return /^\/categories(\/[a-zA-Z0-9]*)?$/
+        
         default:
             return /^$/;
     }
@@ -279,7 +277,7 @@ const getLinkFromLabel = useMemo(()=>{
       {label=='albums'&&<Album isActive={(location.pathname ==getLinkFromLabel) || getRegexForLink.test(location.pathname)}/>}
       {/* {label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/>}
       {label=='saved'&&<Saved isActive={location.pathname ==getLinkFromLabel}/>} */}
-      {label=='categories'&&<Category isActive={location.pathname ==getLinkFromLabel || getRegexForLink.test(location.pathname)}/>}
+     
       {label=='trending'&&<Trending isActive={location.pathname ==getLinkFromLabel}/> }
        {label}
    </Link>
