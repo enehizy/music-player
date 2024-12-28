@@ -15,14 +15,15 @@ function Categories() {
               try{
                 let token =await generateToken()
                 console.log({token})
-                let response= await axios.get('https://api.spotify.com/v1/browse/categories',{
+                let response= await axios.get(`https://api.spotify.com/v1/search?q=genre:rap&type=artist&limit=10`,{
                   headers :{
                       Authorization : `Bearer ${token}`
                   }
                 });
+                console.log({response})
                
-                  console.log({categories:response.data.categories.items})
-                  return response.data.categories.items
+                  // console.log({categories:response.data.categories.items})
+                  // return response.data.categories.items
                
               }
               catch(e){
@@ -38,7 +39,7 @@ function Categories() {
           {isLoading&&(<Loading/>)}
           {isError&&(<p>Error occured fetching data</p>)}
           
-          {isSuccess&&(
+          {/* {isSuccess&&(
             <div>
              
                <PageHeader label="Categories"/>
@@ -55,7 +56,7 @@ function Categories() {
                </div>
               
             </div>
-          )}
+          )} */}
         
     </>
     )

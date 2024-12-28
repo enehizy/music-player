@@ -15,16 +15,19 @@ import Trending from './components/Trending.jsx';
 import Artist from './components/Artist.jsx';
 import Album from './components/Album.jsx';
 import Category from './components/Category.jsx';
+import Search from './components/Search.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
      <Routes>
       <Route path="/" element={<App/>}>
         <Route index element={<Home/>}/>
-        
+         <Route path="search" element={<Search/>}/>
         <Route path="artists" >
           <Route index element={<Artists/>}/>
+          {/* <Route paths='search' element={<div>Artist Search</div>}/> */}
            <Route path=':id' element={<Artist/>}/>
+         
         </Route>
         {/* <Route path="playlists" element={<PlayList/>}/> */}
         <Route path="albums" >

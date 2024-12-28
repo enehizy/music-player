@@ -1,20 +1,22 @@
 import React from 'react'
 import {Outlet, useNavigate} from  'react-router-dom'
-import Header from './components/Header'
+import NavHeader from './components/NavHeader'
 import NavLink from './components/NavLink'
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
-
+import axios from 'axios'
+import { generateToken } from './utils'
 const queryClient = new QueryClient()
-
+import stringSimilarity from "string-similarity";
+import Header from './components/Header'
 
 function App() {
-const navigate =useNavigate()
+
 
   return (
     <QueryClientProvider client={queryClient}>
           <div className='flex '>
         <nav className='p-6 h-screen shadow-xl hidden md:block'>
-        <Header/>
+        <NavHeader/>
         <h2 className='mt-16 font-black text-gray-600 text-md mb-4 '>Discover</h2>
           <ul className='flex flex-col gap-14  justify-center items-center'>
           <NavLink label="home"/>
@@ -31,21 +33,16 @@ const navigate =useNavigate()
        
         </nav>
         
-        <main className='   overflow-scroll h-screen w-full pb-20 '>
+        <main className='w-full '>
         {/* <div className='p-10 shadow-md '><button className=' bg-[#1DB954] rounded-xl  font-bold text-sm p-2'>Login with spotify</button>
         </div> */}
-               <button onClick={()=> navigate(-1)} className='absolute  top-5  font-black  bg-[#8568f5] text-white rounded-full p-1 translate-x-7'>
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-</svg>
-
-
-
-
-
-
-        </button>
-            <Outlet/>
+        <Header/>
+              
+        <div className='h-screen overflow-x-scroll pb-20'>
+          <Outlet/>
+        </div>
+       
+          
             
         </main>
         

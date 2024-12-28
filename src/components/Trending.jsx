@@ -4,6 +4,7 @@ import { generateToken } from '../utils'
 import axios from 'axios'
 import PageHeader from './PageHeader'
 import Loading from './Loading'
+import { Link } from 'react-router-dom'
 function Trending() {
     let {data,isError,isLoading,isSuccess} =useQuery({
         queryKey:['albums'],
@@ -24,29 +25,32 @@ function Trending() {
            return artist.album_type === 'single'
          })
       console.log({artists})
-          return artists
+          return response.data.albums.items
         }
       })
   
   return (
     <div>
-        <PageHeader label="Trending Singles"/>
+      
      {isLoading&&(<Loading/>)}
      {isError&&('error fetching trending data')}
      {isSuccess&&(
+      <>
+        <PageHeader label="Trending Singles and Albums"/>
         <div className='grid grid-cols-3 gap-20 px-20'>
         {data.map((album,index)=>(
-          <div className='flex gap-5 cursor-pointer'>    
+          <Link to={`/albums/${album.id}`} className='flex gap-5 cursor-pointer'>    
 
 
                <h2 className='font-black text-2xl mt-3'>{index + 1}</h2>
               <img className='w-20 h-20 rounded-full border-4 border-[#3dc3c0]' src={album.images[0].url}/>
               <div className='flex flex-col '>
-                    <h2 className='font-bold text-base mb-2'>{album.name}</h2>
+                    <h2 className='font-bold text-base mb-1'>{album.name}</h2>
                     <div className='flex flex-wrap gap-3'>
                     {album.artists.map((artist)=>(
                         <p className='text-[#8568f5] font-semibold text-sm '>{artist.name},</p>
                     ))}</div>
+                     <p className='capitalize font-bold text-sm '>{album.album_type},</p>
               </div>
               
              
@@ -54,10 +58,11 @@ function Trending() {
              
               
               
-          </div>
+          </Link>
         
          ))}
         </div>
+        </>
      )}
     </div>
   )

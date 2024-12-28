@@ -1,29 +1,35 @@
 import React from 'react'
 import {getPopularArtistInfo} from '../utils'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery,useQueries } from '@tanstack/react-query'
 import numeral from 'numeral'
 import PageHeader from './PageHeader'
-import { Link } from 'react-router-dom'
+import { Link,useSearchParams } from 'react-router-dom'
 import Loading from './Loading'
 function Artist() {
-    const {data ,isSuccess,isLoading,isError} =useQuery({
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
+    const [popularArtists] =useQueries({
+      queries:[{
         queryKey : ['artists'],
         queryFn :async ()=>{
          let artists =await  getPopularArtistInfo(40);
          console.log({artists})
         return artists
-        }
-       })
+        },
+        enabled :!search 
+       }]
+    })
   return (
     <div className=''>
-         <PageHeader label="Popular Artists"/>
+         
       
-        {isLoading&&(<Loading/>)}
-        {isError&&('error finding artist')}
-       {isSuccess&&(
-
+        {popularArtists.isLoading&&(<Loading/>)}
+        {popularArtists.isError&&('error finding artist')}
+       {popularArtists.isSuccess&&(
+<>
+<PageHeader label="Popular Artists"/>
         <div className='grid grid-cols-3 px-24 gap-10 2xl:grid-cols-4'>
-      {data.map((artist)=>(
+      {popularArtists.data.map((artist)=>(
        
         <Link to={`${artist.id}`}  className='w-[250px] aspect-auto  flex flex-col justify-center items-center gap-3'>
            
@@ -42,6 +48,7 @@ function Artist() {
      
       ))}
         </div>
+        </>
        )}
     </div>
   )

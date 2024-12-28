@@ -117,6 +117,7 @@ function Home() {
     const [recomendations,artists,albums] =allData;
     const isError =allData.some((data)=>data.isError)
     const isLoading =allData.some((data)=>data.isLoading)
+   
    return(<div>
     <PageHeader label="Recommended Songs"/>
     
