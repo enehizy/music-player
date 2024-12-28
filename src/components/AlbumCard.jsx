@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import { Img } from 'react-image';
+import Lottie from 'lottie-react';
+import loading from '../fetching.json'
 function AlbumCard({heading,albums,seeAll}) {
   return (
     <div className='mt-10  mx-10'>
@@ -10,7 +13,7 @@ function AlbumCard({heading,albums,seeAll}) {
         <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 '>
             {albums.map((album)=>(
             <Link to={`/albums/${album.id}`} className='w-[200px] aspect-auto flex flex-col gap-3 justify-center items-center'>
-                <img src={album.images[0].url} />
+                <Img src={album.images[0].url} loader={<Lottie animationData={loading}/>}/>
                 <p className='font-bold text-lg text-center'>{album.name}</p>
                 <p className=''>{album.artists.map((artist)=>(
                     <span>{artist.name} ,</span>

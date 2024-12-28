@@ -5,8 +5,9 @@ import axios from 'axios';
 import PageHeader from './PageHeader';
 import { Link,useSearchParams } from 'react-router-dom';
 import Loading from './Loading';
-
-
+import loading from '../fetching.json'
+import { Img } from 'react-image';
+import Lottie from 'lottie-react';
 function Albums() {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
@@ -33,7 +34,7 @@ function Albums() {
       console.log({artists})
           return artists
         },
-        enabled: !search
+       
       }
     ]
   })
@@ -50,7 +51,7 @@ function Albums() {
 
 
 
-              <img src={album.images[0].url}/>
+              <Img src={album.images[0].url} loader={<Lottie animationData={loading}/>}/>
               <h2 className='font-bold text-2xl text-center'>{album.name}</h2>
               <div className='flex gap-3'>
               {album.artists.map((artist)=>(

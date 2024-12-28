@@ -6,6 +6,9 @@ import { Link, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 import TrackTable from './TrackTable'
 import AlbumCard from './AlbumCard'
+import { Img } from 'react-image'
+import Lottie from 'lottie-react'
+import loading from '../fetching.json'
 function Search() {
        const [searchparams] =useSearchParams();
        const search =searchparams.get("q")
@@ -45,7 +48,7 @@ function Search() {
         <h2 className='text-2xl mb-5 font-black text-gray-500'>Top Result</h2>
          <Link to={`/artists/${data.artists.items[0].id}`} className=' w-[200px] aspect-auto flex flex-col justify-center items-center gap-3'> 
            
-            <img className='w-full rounded-xl  border-4 border-[#8568f5] p-1' src={data.artists.items[0].images[0].url}/>
+            <Img className='w-full rounded-xl  border-4 border-[#8568f5] p-1' src={data.artists.items[0].images[0].url} loader={<Lottie animationData={loading}/>}/>
             <p className='text-xl font-bold'>{data.artists.items[0].name}</p>
          </Link>
          </div>

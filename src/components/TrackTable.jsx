@@ -1,4 +1,7 @@
+import Lottie from 'lottie-react';
 import React from 'react'
+import { Img } from 'react-image';
+import loading from '../fetching.json'
 function convertMillisecondsToMinutes(milliseconds, significantDigits = 3) {
     const minutes = milliseconds / 60000;
     return minutes.toPrecision(significantDigits);  
@@ -20,7 +23,7 @@ function TrackTable({tracks,albumImage}) {
         {tracks.map((track,index)=>(
         <tr key={index} className='transition-all shadow-md hover:shadow-[#8568f5] font-semibold text-gray-500 '>
             <td className='font-black'>{index +1}</td>
-            <td><img className='w-10 h-10' src={albumImage || track.album.images[0].url}/></td>
+            <td><Img className='w-10 h-10' src={albumImage || track.album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/></td>
            
             <td>{track.name}</td>
             <td className='text-[#8568f5]'>{track.artists.map((artist)=>(

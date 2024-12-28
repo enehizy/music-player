@@ -5,6 +5,9 @@ import axios from 'axios'
 import PageHeader from './PageHeader'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
+import { Img } from 'react-image'
+import loading from '../fetching.json'
+import Lottie from 'lottie-react'
 function Trending() {
     let {data,isError,isLoading,isSuccess} =useQuery({
         queryKey:['albums'],
@@ -43,7 +46,7 @@ function Trending() {
 
 
                <h2 className='font-black text-2xl mt-3'>{index + 1}</h2>
-              <img className='w-20 h-20 rounded-full border-4 border-[#3dc3c0]' src={album.images[0].url}/>
+              <Img className='w-20 h-20 rounded-full border-4 border-[#3dc3c0]' src={album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/>
               <div className='flex flex-col '>
                     <h2 className='font-bold text-base mb-1'>{album.name}</h2>
                     <div className='flex flex-wrap gap-3'>

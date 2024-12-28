@@ -6,8 +6,8 @@ import PageHeader from './PageHeader'
 import { Link,useSearchParams } from 'react-router-dom'
 import Loading from './Loading'
 function Artist() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
+
+ 
     const [popularArtists] =useQueries({
       queries:[{
         queryKey : ['artists'],
@@ -16,7 +16,7 @@ function Artist() {
          console.log({artists})
         return artists
         },
-        enabled :!search 
+       
        }]
     })
   return (
