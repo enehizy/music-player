@@ -52,7 +52,7 @@ function Albums() {
 
 
               <Img src={album.images[0].url} loader={<Lottie animationData={loading}/>}/>
-              <h2 className='font-bold text-2xl text-center'>{album.name}</h2>
+              <h2 className='font-bold text-xl text-center'>{album.name}</h2>
               <div className='flex gap-3'>
               {album.artists.map((artist)=>(
                 <p className='text-[#8568f5] font-bold'>{artist.name},</p>

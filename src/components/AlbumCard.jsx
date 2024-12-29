@@ -14,8 +14,8 @@ function AlbumCard({heading,albums,seeAll}) {
             {albums.map((album)=>(
             <Link to={`/albums/${album.id}`} className='w-[200px] aspect-auto flex flex-col gap-3 justify-center items-center'>
                 <Img src={album.images[0].url} loader={<Lottie animationData={loading}/>}/>
-                <p className='font-bold text-lg text-center'>{album.name}</p>
-                <p className=''>{album.artists.map((artist)=>(
+                <p className='font-semibold text-lg text-center'>{album.name.slice(0,20)}...</p>
+                <p className='text-center text-bold'>{album.artists.map((artist)=>(
                     <span>{artist.name} ,</span>
                 ))}</p>
                 <p className='font-semibold text-[#8568f5]'>{album.release_date.split("-")[0]}</p>

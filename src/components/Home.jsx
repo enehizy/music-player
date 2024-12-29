@@ -8,77 +8,36 @@ import PageHeader from './PageHeader';
 import TrackTable from './TrackTable';
 import Loading from './Loading';
 import AlbumCard from './AlbumCard';
+import { useSpotifyToken } from '../hooks/spotifyToken';
 
 
 
 
 function Home() {
-    const location = useLocation();
+   
     
-    const recommendedTrackIds = [
-        "1HcAC8ftJM0Gra9Vvo8T0Q",
-        "1Es7AUAhQvapIcoh3qMKDL",
-        "1Mza2sr6tPhy6jjI3HB9fW",
-        "0aB0v4027ukVziUGwVGYpG",
-        "5rmcjZTrE9JR1YrbNZDFNW",
-        "6XVkJ1fM7NkjODPYI7QbAM",
-        "2nYeyMeqYDiFSYYtl2BWD6",
-        "1JSU2xhybGH1PtvzkZNjzC",
-        "1nKVRhOSBIeRzR30ECSesC",
-        "4lwfqyQXSDJ7kELpMErMih",
-        "1nF1SpkNfgPPozcXh2hvGU",
-        "3tFed7YsjGnIfxeLEQwx3R",
-        "4VI2Y5xg4gYynQqNQNQbTN",
-        "6MF4tRr5lU8qok8IKaFOBE",
-        "2plbrEY59IikOBgBGLjaoe",
-        "6rDaCGqcQB1urhpCrrD599",
-        "3rXlcLZk3MCaRPND5g9QiW",
-        "1SocftHhtuqF7k83eUhHiz",
-        "0fsgieABBLYkx6rk5N3JUD",
-        "6ujdLuZXkyp4yKOZSE64nM"
-    ];
-    // React.useEffect(()=>{
     
-       
-    //     const hash = location.hash;
-    //     const params = new URLSearchParams(hash.substring(1)); 
-    //     const access_token = params.get("access_token");
-    // if(access_token){
-    //    localStorage.setItem('token',access_token)
-    // }else{
-       
-    //     const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-    //     console.log({clientId})
-    //     const redirectUri = 'http://localhost:5173/';
-    //     const scopes = [
-    //         "user-read-private",
-    //         "user-read-email",
-    //         "user-library-read"
-    //     ].join(" ");
-
-
-    //     const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${clientId}&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
-    //     window.location.href = authUrl;
-    // }
-    // },[])
+   const token =useSpotifyToken()
     const allData= useQueries({queries:[{
         queryKey:['recommendations'],
         queryFn: async()=>{
            try {
-             let token= await generateToken();
-             let response = await axios.get(`https://api.spotify.com/v1/tracks?ids=${recommendedTrackIds.join(",")}`,{
+            console.log(token)
+             let response = await axios.get(`https://api.spotify.com/v1/me/top/tracks`,{
                 headers :{
                     Authorization : `Bearer ${token}`
                 }
              })
-           const tracks= response.data.tracks
+             console.log({response})
+           const tracks= response.data.items
            
              return tracks.slice(0,7)
            }
            catch(e){
              throw new Error(e)
            }
-        }
+        },
+        enabled:token !== ""
     },
    {
            queryKey : ['home_artists'],
@@ -119,7 +78,7 @@ function Home() {
     const isLoading =allData.some((data)=>data.isLoading)
    
    return(<div>
-    <PageHeader label="Recommended Songs"/>
+    <PageHeader label="Most Played Songs"/>
     
     
     {recomendations.isSuccess&&(

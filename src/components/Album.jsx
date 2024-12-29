@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import TrackTable from './TrackTable';
 import Loading from './Loading';
+import { useCurrentTrackId } from '../hooks/useCurrentTrackId';
 
 const formatAlbumTime =(milliseconds)=>{
     const hours = Math.floor(milliseconds / (1000 * 60 * 60));
@@ -46,6 +47,7 @@ function Album() {
               return {...album,total_track_minutes}
             }
     })
+    const [_,setTrackId] = useCurrentTrackId()
   return (
     <div>
       {isLoading&&(<Loading/>)}
@@ -87,7 +89,10 @@ function Album() {
             </div>
         </div>
        <div className='mt-12'>
-        <button className='bg-white rounded-full  text-white bg-gradient-to-r from-[#3dc3c0] to-[#8568f5] py-1 px-6 font-bold ml-10 mb-10'>Play All</button>
+        <button onClick={()=>{
+          const trackUri =data.tracks.items.map((track)=>track.uri);
+          setTrackId(trackUri)
+        }} className='bg-white rounded-full  text-white bg-gradient-to-r from-[#3dc3c0] to-[#8568f5] py-1 px-6 font-bold ml-10 mb-10'>Play All</button>
          <TrackTable tracks={data.tracks.items} albumImage={data.images[0].url}/>
        </div>
      

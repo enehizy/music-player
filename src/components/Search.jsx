@@ -45,7 +45,7 @@ function Search() {
       {isSuccess&&(<div className=' mt-24 pl-10'>
         <div className=''>
         <div>
-        <h2 className='text-2xl mb-5 font-black text-gray-500'>Top Result</h2>
+        <h2 className='text-2xl mb-5 font-black text-gray-500'>Top Artist</h2>
          <Link to={`/artists/${data.artists.items[0].id}`} className=' w-[200px] aspect-auto flex flex-col justify-center items-center gap-3'> 
            
             <Img className='w-full rounded-xl  border-4 border-[#8568f5] p-1' src={data.artists.items[0].images[0].url} loader={<Lottie animationData={loading}/>}/>

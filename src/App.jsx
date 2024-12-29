@@ -8,12 +8,15 @@ import { generateToken } from './utils'
 const queryClient = new QueryClient()
 import stringSimilarity from "string-similarity";
 import Header from './components/Header'
+import SpotifyPlayer from './components/Player'
+import { TrackUriProvider } from './hooks/currentTrackId'
 
 function App() {
 
 
   return (
     <QueryClientProvider client={queryClient}>
+      <TrackUriProvider>
           <div className='flex '>
         <nav className='p-6 h-screen shadow-xl hidden md:block'>
         <NavHeader/>
@@ -39,14 +42,19 @@ function App() {
         <Header/>
               
         <div className='h-screen overflow-x-scroll pb-20'>
+      
           <Outlet/>
+         
         </div>
+       <div className='absolute bottom-0 w-full'>
+         <SpotifyPlayer/>
+       </div>
        
-          
             
         </main>
         
     </div>
+    </TrackUriProvider>
     </QueryClientProvider>
    
   )
