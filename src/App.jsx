@@ -10,7 +10,8 @@ import stringSimilarity from "string-similarity";
 import Header from './components/Header'
 import SpotifyPlayer from './components/Player'
 import { TrackUriProvider } from './hooks/currentTrackId'
-import MobileHeader from './components/MobileHeader'
+
+import MobileNav from './components/MobileNav'
 
 function App() {
 
@@ -43,16 +44,22 @@ function App() {
         {/* <div className='p-10 shadow-md '><button className=' bg-[#1DB954] rounded-xl  font-bold text-sm p-2'>Login with spotify</button>
         </div> */}
         <Header/>
-        <MobileHeader/>    
-        <div className='h-screen overflow-x-scroll pb-20'>
+        <header className='block md:hidden p-2 shadow-md'>
+        <NavHeader/>
+        </header>
+       
+        
+        <div className='h-screen overflow-x-scroll pb-[400px] md:pb-32'>
       
           <Outlet/>
          
         </div>
-       <div className='absolute bottom-0 w-full'>
+       <div className='absolute  bottom-0 w-full bg-white'>
          <SpotifyPlayer/>
+         <MobileNav/>
        </div>
-       
+      
+      
             
         </main>
         

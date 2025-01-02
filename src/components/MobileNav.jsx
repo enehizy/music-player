@@ -46,11 +46,11 @@ const MobileNavLink=({children,label})=>{
     <li className={` capitalize flex flex-col justify-center items-center ${location.pathname ==getLinkFromLabel||getRegexForLink.test(location.pathname)? 'text-[#8568f5] font-black ':'text-gray-500 font-medium '}`}>{children}<Link to={getLinkFromLabel} className='text-center'>{label}</Link></li>
   )
 }
-function MobileHeader() {
+function MobileNav() {
    
   return (
-    <header className='block md:hidden shadow-lg'>
-        <NavHeader/>
+    <nav className='block md:hidden shadow-lg'>
+        {/* <NavHeader/> */}
      <ul className='flex w-full justify-between p-5 items-center '>
        <MobileNavLink label="home"><Home/></MobileNavLink>
        <MobileNavLink label="trending" ><Trending/></MobileNavLink>
@@ -62,8 +62,8 @@ function MobileHeader() {
        <li><Album/></li>
        <li><Library/></li> */}
      </ul>
-    </header>
+    </nav>
   )
 }
 
-export default MobileHeader
+export default MobileNav
