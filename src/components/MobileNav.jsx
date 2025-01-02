@@ -2,10 +2,12 @@ import React,{useMemo} from 'react'
 import {Home,Trending,Artist,Album,Library} from './NavLink'
 import NavHeader from './NavHeader'
 import { useLocation,Link } from 'react-router-dom'
+import { useSpotifyToken } from '../hooks/spotifyToken'
 const MobileNavLink=({children,label})=>{
     const location =useLocation()
+    const token =useSpotifyToken()
     const getLinkFromLabel = useMemo(()=>{
-        const accessToken= localStorage.getItem('token');
+        
          switch (label){
              case 'home':
                  return '/';
@@ -18,7 +20,7 @@ const MobileNavLink=({children,label})=>{
              case 'artists':
                  return "/artists"
              case 'library':
-                 return `/library${accessToken&&`/#access_token=${accessToken}`}`;
+              return `/library/#access_token=${token}`;
              case 'trending':
                  return '/trending'
             

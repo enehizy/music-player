@@ -30,10 +30,14 @@ function Home() {
              })
              console.log({response})
            const tracks= response.data.items
-           
+             if(response.status == "401"){
+                location.href ="/login"
+                return
+             }
              return tracks.slice(0,7)
            }
            catch(e){
+            //  location.href ="/login"
              throw new Error(e)
            }
         },
@@ -95,8 +99,8 @@ function Home() {
     </div>
     
 
-    <section className='overflow-auto '>
-            <div className='grid w-[1100px]    grid-cols-5 gap-4  px-10 justify-center items-center '>
+    <section className='overflow-auto w-full'>
+            <div className='grid min-w-[1100px]    grid-cols-5 gap-4  px-10 justify-center items-center '>
         
         {artists.data.map((artist)=>(
             <Link to={`/artists/${artist.id}`} className='w-[200px]  gap-5 aspect-auto flex flex-col justify-center items-center'>

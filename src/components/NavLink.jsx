@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useSpotifyToken } from '../hooks/spotifyToken'
 export const Home =({isActive})=>{
     return(<svg
         xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +232,9 @@ export const Library=({isActive})=>{
         
 // }
 function NavLink({label}) {
+  let token= useSpotifyToken()
 const getLinkFromLabel = useMemo(()=>{
-   const accessToken= localStorage.getItem('token');
+  
     switch (label){
         case 'home':
             return '/';
@@ -245,14 +247,14 @@ const getLinkFromLabel = useMemo(()=>{
         case 'artists':
             return "/artists"
         case 'library':
-            return `/library${accessToken&&`/#access_token=${accessToken}`}`;
+            return `/library/#access_token=${token}`;
         case 'trending':
             return '/trending'
        
         default:
             return "/404"
     }
-},[])
+},[token])
   let location = useLocation();
   let getRegexForLink=React.useMemo(()=>{
     switch (label){

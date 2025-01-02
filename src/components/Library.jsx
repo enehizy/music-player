@@ -7,6 +7,7 @@ import TrackTable from './TrackTable'
 import PageHeader from './PageHeader'
 function Library() {
      const token =useSpotifyToken()
+    
     const {isLoading,isError,data,isSuccess} =useQuery({
         queryKey:['library',{token}],
         queryFn:async()=>{
@@ -21,8 +22,9 @@ function Library() {
                         limit:50,
                     }
                  })
-                 if(response.status !== 200){
-                    location.href = '/login'
+                 if(response.status == "401"){
+                    location.href ="/login"
+                    return
                  }
                  console.log({response})
                const tracks= response.data.items.map((track)=> track.track)

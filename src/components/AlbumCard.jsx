@@ -11,7 +11,7 @@ function AlbumCard({heading,albums,seeAll}) {
         {seeAll&&(<Link className='text-[#8568f5] font-semibold md:font-bold 2xl:-translate-x-[100px]' to="/albums">See All</Link>)}
         </div>
         <section className='overflow-auto'>
-            <div className='grid overflow-x-scroll  md:overflow-hidden w-[1050px]  grid-cols-5 gap-3 md:gap-4 '>
+            <div className='grid overflow-x-scroll  md:overflow-hidden min-w-[1050px]   grid-cols-5 gap-3 md:gap-5 '>
                 {albums.map((album)=>(
                 <Link to={`/albums/${album.id}`} className='w-[200px] aspect-auto flex flex-col gap-3 justify-center items-center'>
                     <Img src={album.images[0].url} loader={<Lottie animationData={loading}/>}/>
