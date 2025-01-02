@@ -88,22 +88,26 @@ function Home() {
 
 
 {artists.isSuccess&&(
-    <>
+    <div >
     <div className='mt-10 mx-10 mb-5 flex flex-wrap-reverse justify-between items-center'>
     <h2 className='font-semibold text-md md:text-2xl text-gray-600 '>Recommended Artists</h2>
     <Link className='text-[#8568f5] font-semibold md:font-bold 2xl:-translate-x-[100px]' to="/artists">See All</Link>
     </div>
     
-   <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4  px-10 gap-5'>
+
+    <section className='overflow-auto '>
+            <div className='grid w-[1100px]    grid-cols-5 gap-4  px-10 justify-center items-center '>
+        
+        {artists.data.map((artist)=>(
+            <Link to={`/artists/${artist.id}`} className='w-[200px]  gap-5 aspect-auto flex flex-col justify-center items-center'>
+                <img className='h-[230px]' src={artist.images[0].url}/>
+                <p className='font-semibold text-lg text-center'>{artist.name}</p>
+            </Link>
+        ))}
+        </div>
+    </section>
   
-    {artists.data.map((artist)=>(
-        <Link to={`/artists/${artist.id}`} className='w-[200px]  gap-3 aspect-auto flex flex-col justify-center items-center'>
-            <img className='h-[230px]' src={artist.images[0].url}/>
-            <p className='font-semibold text-lg text-center'>{artist.name}</p>
-        </Link>
-    ))}
    </div>
-   </>
 )}
 
 

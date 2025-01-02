@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-const Home =({isActive})=>{
+export const Home =({isActive})=>{
     return(<svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -19,7 +19,7 @@ const Home =({isActive})=>{
         ></path>
       </svg>)
 }
-const Artist=({isActive})=>{
+export const Artist=({isActive})=>{
     return( 
         <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const Artist=({isActive})=>{
       </svg>
     )
 }
-const Album=({isActive})=>{{
+export const Album=({isActive})=>{{
     return(  <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -99,7 +99,7 @@ const Album=({isActive})=>{{
         ></path>
       </svg>)
 }}
-const Trending =({isActive})=>{
+export const Trending =({isActive})=>{
     return(
         <svg xmlns="http://www.w3.org/2000/svg" fill='none' viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
         <path   stroke={`${isActive?'white':'#999'}`} strokeLinecap="round" strokeLinejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
@@ -107,41 +107,41 @@ const Trending =({isActive})=>{
       
     )
 }
-const PlayList =({isActive})=>{
-    return (<svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        fill="none"
-        viewBox="0 0 20 20"
-      >
-        <path
-          stroke="#999"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          fill={`${isActive?'currentcolor':'none'}`}
-          d="M5.233 18.333a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2"
-        ></path>
-        <path
-          stroke="#999"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          fill={`${isActive?'currentcolor':'none'}`}
-          d="M17.367 14V3.833c0-2.166-1.359-2.466-2.734-2.091l-5.2 1.416c-.95.259-1.6 1.009-1.6 2.092v10.475"
-        ></path>
-        <path
-          stroke="#999"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          fill={`${isActive?'currentcolor':'none'}`}
-          d="M14.767 16.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2M7.833 7.933l9.534-2.6"
-        ></path>
-      </svg>)
-}
-const Library=({isActive})=>{
+// const PlayList =({isActive})=>{
+//     return (<svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         width="20"
+//         height="20"
+//         fill="none"
+//         viewBox="0 0 20 20"
+//       >
+//         <path
+//           stroke="#999"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           fill={`${isActive?'currentcolor':'none'}`}
+//           d="M5.233 18.333a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2"
+//         ></path>
+//         <path
+//           stroke="#999"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           fill={`${isActive?'currentcolor':'none'}`}
+//           d="M17.367 14V3.833c0-2.166-1.359-2.466-2.734-2.091l-5.2 1.416c-.95.259-1.6 1.009-1.6 2.092v10.475"
+//         ></path>
+//         <path
+//           stroke="#999"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           fill={`${isActive?'currentcolor':'none'}`}
+//           d="M14.767 16.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2M7.833 7.933l9.534-2.6"
+//         ></path>
+//       </svg>)
+// }
+export const Library=({isActive})=>{
   return(  <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path  fill={`${isActive?'currentcolor':'none'}`}   stroke="#999" d="M7 3h2v18H7zM4 3h2v18H4zm6 0h2v18h-2zm9.062 17.792l-6.223-16.89l1.877-.692l6.223 16.89z"></path></svg>)
 }
 // const Recent=({isActive})=>{
@@ -191,45 +191,45 @@ const Library=({isActive})=>{
 //       </svg>
 //         )
 //     }
-        const Category=({isActive})=>{
-            return(<svg
-                xmlns="http://www.w3.org/2000/svg"
-               width="20"
-        height="20"
-        fill={`${isActive?'currentcolor':'none'}`} 
-                viewBox="0 0 24 24"
-              >
-                <g id="Iconly/Curved/Category">
-                  <g
-                    id="Category"
-                    fillRule="evenodd"
-                     stroke="#999"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    clipRule="evenodd"
-                  >
-                    <path
-                      id="Stroke 1"
-                      d="M21 6.674a3.674 3.674 0 1 1-7.348-.001 3.674 3.674 0 0 1 7.348 0"
-                    ></path>
-                    <path
-                      id="Stroke 3"
-                      d="M10.347 6.674a3.674 3.674 0 1 1-7.348 0 3.674 3.674 0 0 1 7.348 0"
-                    ></path>
-                    <path
-                      id="Stroke 5"
-                      d="M21 17.262a3.674 3.674 0 1 1-7.347-.001 3.674 3.674 0 0 1 7.347 0"
-                    ></path>
-                    <path
-                      id="Stroke 7"
-                      d="M10.347 17.262a3.673 3.673 0 1 1-7.346 0 3.673 3.673 0 0 1 7.346 0"
-                    ></path>
-                  </g>
-                </g>
-              </svg>)
+//         const Category=({isActive})=>{
+//             return(<svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                width="20"
+//         height="20"
+//         fill={`${isActive?'currentcolor':'none'}`} 
+//                 viewBox="0 0 24 24"
+//               >
+//                 <g id="Iconly/Curved/Category">
+//                   <g
+//                     id="Category"
+//                     fillRule="evenodd"
+//                      stroke="#999"
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="1.5"
+//                     clipRule="evenodd"
+//                   >
+//                     <path
+//                       id="Stroke 1"
+//                       d="M21 6.674a3.674 3.674 0 1 1-7.348-.001 3.674 3.674 0 0 1 7.348 0"
+//                     ></path>
+//                     <path
+//                       id="Stroke 3"
+//                       d="M10.347 6.674a3.674 3.674 0 1 1-7.348 0 3.674 3.674 0 0 1 7.348 0"
+//                     ></path>
+//                     <path
+//                       id="Stroke 5"
+//                       d="M21 17.262a3.674 3.674 0 1 1-7.347-.001 3.674 3.674 0 0 1 7.347 0"
+//                     ></path>
+//                     <path
+//                       id="Stroke 7"
+//                       d="M10.347 17.262a3.673 3.673 0 1 1-7.346 0 3.673 3.673 0 0 1 7.346 0"
+//                     ></path>
+//                   </g>
+//                 </g>
+//               </svg>)
         
-}
+// }
 function NavLink({label}) {
 const getLinkFromLabel = useMemo(()=>{
    const accessToken= localStorage.getItem('token');

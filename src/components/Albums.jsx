@@ -45,7 +45,7 @@ function Albums() {
    {newAlbums.isError&&('error finding albums')}
    {newAlbums.isSuccess&&(<>
     <PageHeader label="New Released Albums"/>
-    <div className='grid md:grid-cols-3 2xl:grid-cols-4 gap-20 px-20'>
+    <div className='grid md:grid-cols-3 2xl:grid-cols-4 justify-center items-center gap-20 md:px-20'>
          {newAlbums.data.map((album)=>(
           <Link to={album.id} className='flex cursor-pointer flex-col justify-center items-center gap-3 w-[300px] aspect-auto'>    
 

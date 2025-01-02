@@ -21,6 +21,9 @@ function Library() {
                         limit:50,
                     }
                  })
+                 if(response.status !== 200){
+                    location.href = '/login'
+                 }
                  console.log({response})
                const tracks= response.data.items.map((track)=> track.track)
                

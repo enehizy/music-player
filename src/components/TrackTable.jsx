@@ -12,11 +12,11 @@ function TrackTable({tracks,albumImage}) {
     const [trackId ,setTrackid]=useCurrentTrackId()
     
   return (
-    <table className="w-[95%]  border-separate border-spacing-4 pl-2 md:pl-6 transition-all -mt-6 " >
+    <table className= "table-auto  md:w-[95%]  border-separate border-spacing-4 px-1  md:pl-6 transition-all -mt-6 " >
         <thead>
-            <tr className='text-left'>
-                <th></th>
-               <th></th>
+            <tr className='text-left text-sm md:text-lg'>
+                <th ></th>
+               <th ></th>
                 <th>Title</th>
                 <th>Artists</th>
                 <th>Duration</th>
@@ -35,7 +35,7 @@ function TrackTable({tracks,albumImage}) {
            
         }}  key={index} className={`${track.uri === trackId&&' shadow-[#8568f5]  '} bg-transparent transition-all duration-75 shadow-md hover:shadow-[#8568f5] font-medium md:font-semibold text-gray-500 group`}>
            
-            {track.uri !== trackId &&( <td className=' font-black block group-hover:hidden p-2'>{index +1} </td>)}
+            {track.uri !== trackId &&( <td className='font-semibold md:font-black   group-hover:hidden p-2 block'>{index +1} </td>)}
             {track.uri !== trackId &&(  <td className='hidden group-hover:block pt-3'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#8568f5" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
             </svg>
@@ -43,10 +43,10 @@ function TrackTable({tracks,albumImage}) {
           
             {track.uri === trackId&&(<td><Lottie className='w-10 h-10' animationData={SoundWave}/></td>)}
             
-            <td className='bg-transparent'><Img className='  md:w-10 md:h-10' src={albumImage || track.album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/></td>
+            <td className='bg-transparent '><Img className='w-6 h-6  md:w-10 md:h-10' src={albumImage || track.album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/></td>
            
-            <td>{track.name}</td>
-            <td className='text-[#8568f5]'>{track.artists.map((artist)=>(
+            <td >{track.name}</td>
+            <td className='text-[#8568f5] text-sm md:text-lg'>{track.artists.map((artist)=>(
                 <span>{artist.name} ,</span>
             ))} </td>
             <td className=''>{convertMillisecondsToMinutes(track.duration_ms)}</td>

@@ -18,7 +18,7 @@ function Header() {
    
     
   return (
-    <div className={`bg-[#edebf7] absolute w-full  z-10 `} >
+    <div className={`bg-[#edebf7] absolute w-full  z-10  hidden md:block`} >
          <header className=' flex gap-10  p-5 '>
     <button onClick={()=> navigate(-1)} className={`  font-black w-10 h-10  bg-[#8568f5] text-white rounded-full p-1 flex justify-center items-center`}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -26,9 +26,9 @@ function Header() {
 </svg>
     </button>
     
-<form className="flex"  onSubmit={(e)=>{handleSubmit(e)}} >
+<form className="flex "  onSubmit={(e)=>{handleSubmit(e)}} >
    
-<input onChange={(e)=>{setSearch(e.target.value)}} className=' rounded-full px-5 w-[480px] py-2 border border-[#8568f5] '  placeholder='search artist ,songs and albums'/>
+<input onChange={(e)=>{setSearch(e.target.value)}} className=' rounded-full px-5 w-[300px] md:w-[480px] py-2 border border-[#8568f5] '  placeholder='search artist ,songs and albums'/>
 {/* <Lottie className='w-20 h-20' animationData={fetching}/> */}
 <button disabled={search.length>=3?false:true} className='bg-[#8568f5] text-white  px-2 rounded-full -translate-x-[70px]  disabled:opacity-50' type='submit'>Search</button>
 </form>
