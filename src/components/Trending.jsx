@@ -40,13 +40,13 @@ function Trending() {
      {isSuccess&&(
       <>
         <PageHeader label="Trending Singles and Albums"/>
-        <div className='grid grid-cols-3 gap-20 px-20'>
+        <div className='grid md:grid-cols-3 gap-20 px-20 mb-52'>
         {data.map((album,index)=>(
           <Link to={`/albums/${album.id}`} className='flex gap-5 cursor-pointer'>    
 
 
-               <h2 className='font-black text-2xl mt-3'>{index + 1}</h2>
-              <Img className='w-20 h-20 rounded-full border-4 border-[#3dc3c0]' src={album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/>
+               <h2 className='font-black md:text-2xl mt-3'>{index + 1}</h2>
+              <Img className=' w-14 h-14 md:w-20 md:h-20 rounded-full border-4 border-[#3dc3c0]' src={album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/>
               <div className='flex flex-col '>
                     <h2 className='font-bold text-base mb-1'>{album.name}</h2>
                     <div className='flex flex-wrap gap-3'>

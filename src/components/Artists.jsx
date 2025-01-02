@@ -28,7 +28,7 @@ function Artist() {
        {popularArtists.isSuccess&&(
 <>
 <PageHeader label="Popular Artists"/>
-        <div className='grid grid-cols-3 px-24 gap-10 2xl:grid-cols-4'>
+        <div className='grid md:grid-cols-3  justify-center items-center md:px-24 gap-10 2xl:grid-cols-4'>
       {popularArtists.data.map((artist)=>(
        
         <Link to={`${artist.id}`}  className='w-[250px] aspect-auto  flex flex-col justify-center items-center gap-3'>

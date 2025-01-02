@@ -90,8 +90,8 @@ function Home() {
 {artists.isSuccess&&(
     <>
     <div className='mt-10 mx-10 mb-5 flex flex-wrap-reverse justify-between items-center'>
-    <h2 className='font-semibold text-2xl text-gray-600 '>Recommended Artists</h2>
-    <Link className='text-[#8568f5] font-bold 2xl:-translate-x-[100px]' to="/artists">See All</Link>
+    <h2 className='font-semibold text-md md:text-2xl text-gray-600 '>Recommended Artists</h2>
+    <Link className='text-[#8568f5] font-semibold md:font-bold 2xl:-translate-x-[100px]' to="/artists">See All</Link>
     </div>
     
    <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4  px-10 gap-5'>

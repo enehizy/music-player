@@ -7,8 +7,8 @@ function AlbumCard({heading,albums,seeAll}) {
   return (
     <div className='mt-10  mx-10'>
         <div className='mt-10  mb-5 flex justify-between items-center'>
-        <h2 className='font-semibold text-2xl text-gray-600 '>{heading}</h2>
-        {seeAll&&(<Link className='text-[#8568f5] font-bold 2xl:-translate-x-[100px]' to="/albums">See All</Link>)}
+        <h2 className='font-semibold text-md md:text-2xl text-gray-600 '>{heading}</h2>
+        {seeAll&&(<Link className='text-[#8568f5] font-semibold md:font-bold 2xl:-translate-x-[100px]' to="/albums">See All</Link>)}
         </div>
         <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 '>
             {albums.map((album)=>(
