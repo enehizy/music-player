@@ -12,7 +12,7 @@ function TrackTable({tracks,albumImage}) {
     const [trackId ,setTrackid]=useCurrentTrackId()
     
   return (
-    <table className="w-[95%]  border-separate border-spacing-4  pl-6 transition-all -mt-6 " >
+    <table className="w-[95%]  border-separate border-spacing-4 pl-2 md:pl-6 transition-all -mt-6 " >
         <thead>
             <tr className='text-left'>
                 <th></th>
@@ -33,7 +33,7 @@ function TrackTable({tracks,albumImage}) {
            setTrackid(track.uri)
         
            
-        }}  key={index} className={`${track.uri === trackId&&' shadow-[#8568f5]  '} bg-transparent transition-all duration-75 shadow-md hover:shadow-[#8568f5] font-semibold text-gray-500 group`}>
+        }}  key={index} className={`${track.uri === trackId&&' shadow-[#8568f5]  '} bg-transparent transition-all duration-75 shadow-md hover:shadow-[#8568f5] font-medium md:font-semibold text-gray-500 group`}>
            
             {track.uri !== trackId &&( <td className=' font-black block group-hover:hidden p-2'>{index +1} </td>)}
             {track.uri !== trackId &&(  <td className='hidden group-hover:block pt-3'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#8568f5" className="size-6">
@@ -43,7 +43,7 @@ function TrackTable({tracks,albumImage}) {
           
             {track.uri === trackId&&(<td><Lottie className='w-10 h-10' animationData={SoundWave}/></td>)}
             
-            <td className='bg-transparent'><Img className='w-10 h-10' src={albumImage || track.album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/></td>
+            <td className='bg-transparent'><Img className='  md:w-10 md:h-10' src={albumImage || track.album.images[0].url} loader={<Lottie className='w-[70px] h-[70px] m-0 p-0'  animationData={loading}/>}/></td>
            
             <td>{track.name}</td>
             <td className='text-[#8568f5]'>{track.artists.map((artist)=>(
