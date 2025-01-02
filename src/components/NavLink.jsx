@@ -141,7 +141,9 @@ const PlayList =({isActive})=>{
         ></path>
       </svg>)
 }
-
+const Library=({isActive})=>{
+  return(  <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24"><path  fill={`${isActive?'currentcolor':'none'}`}   stroke="#999" d="M7 3h2v18H7zM4 3h2v18H4zm6 0h2v18h-2zm9.062 17.792l-6.223-16.89l1.877-.692l6.223 16.89z"></path></svg>)
+}
 // const Recent=({isActive})=>{
 //     return( <svg
 //         xmlns="http://www.w3.org/2000/svg"
@@ -230,6 +232,7 @@ const PlayList =({isActive})=>{
 }
 function NavLink({label}) {
 const getLinkFromLabel = useMemo(()=>{
+   const accessToken= localStorage.getItem('token');
     switch (label){
         case 'home':
             return '/';
@@ -241,8 +244,8 @@ const getLinkFromLabel = useMemo(()=>{
         //     return "/recent";
         case 'artists':
             return "/artists"
-        // case 'saved':
-        //     return "/saved";
+        case 'library':
+            return `/library${accessToken&&`/#access_token=${accessToken}`}`;
         case 'trending':
             return '/trending'
        
@@ -257,7 +260,8 @@ const getLinkFromLabel = useMemo(()=>{
             return /^\/albums(\/[a-zA-Z0-9]*)?$/;
         case 'artists':
             return /^\/artists(\/[a-zA-Z0-9]*)?$/
-        
+        case 'library':
+          return /^\/library/
         default:
             return /^$/;
     }
@@ -266,7 +270,7 @@ const getLinkFromLabel = useMemo(()=>{
   })
 
   
- 
+ console.log(getRegexForLink)
   return (
    <li className='grow'> 
    <Link to={getLinkFromLabel}className={`flex px-16 py-1 grow font-bold  gap-2  justify-center items-center capitalize ${location.pathname ==getLinkFromLabel||getRegexForLink.test(location.pathname)? 'bg-white rounded-xl  text-white bg-gradient-to-r from-[#3dc3c0] to-[#8568f5] ':''}`}>
@@ -275,8 +279,8 @@ const getLinkFromLabel = useMemo(()=>{
       {label=='artists'&&<Artist isActive={location.pathname ==getLinkFromLabel || getRegexForLink.test(location.pathname)}/>}
       {/* {label=='playlists'&&<PlayList isActive={location.pathname ==getLinkFromLabel}/>} */}
       {label=='albums'&&<Album isActive={(location.pathname ==getLinkFromLabel) || getRegexForLink.test(location.pathname)}/>}
-      {/* {label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/>}
-      {label=='saved'&&<Saved isActive={location.pathname ==getLinkFromLabel}/>} */}
+    {/* label=='recent'&&<Recent isActive={location.pathname ==getLinkFromLabel}/> */}
+      {label=='library'&&<Library isActive={location.pathname ==getLinkFromLabel || getRegexForLink.test(location.pathname)}/>} 
      
       {label=='trending'&&<Trending isActive={location.pathname ==getLinkFromLabel}/> }
        {label}

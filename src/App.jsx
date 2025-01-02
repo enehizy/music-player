@@ -27,9 +27,11 @@ function App() {
           {/* <NavLink label="recent" />
           <NavLink label="saved"/> */}
           <NavLink label="artists"/>
+
           {/* <NavLink label="playlists"/> */}
        
           <NavLink label="albums"/>
+          <NavLink label="library"/>
           
           </ul>
          

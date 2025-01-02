@@ -17,7 +17,7 @@ function Home() {
    
     
     
-   const token =useSpotifyToken()
+    const token =useSpotifyToken()
     const allData= useQueries({queries:[{
         queryKey:['recommendations'],
         queryFn: async()=>{
@@ -37,7 +37,7 @@ function Home() {
              throw new Error(e)
            }
         },
-        enabled:token !== ""
+       
     },
    {
            queryKey : ['home_artists'],

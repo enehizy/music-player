@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <div className='flex justify-center items-center gap-2'>
+    <Link to={"/"} className='flex justify-center items-center gap-2'>
       <svg
     xmlns="http://www.w3.org/2000/svg"
     width="26"
@@ -29,7 +30,7 @@ function Header() {
     </defs>
   </svg>
 <h1 className='text-2xl font-black bg-gradient-to-r from-[#3dc3c0] to-[#8568f5] bg-clip-text text-transparent'>SoundAura</h1>
-      </div>
+      </Link>
   )
 }
 

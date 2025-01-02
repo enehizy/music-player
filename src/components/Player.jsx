@@ -14,8 +14,8 @@ const token =useSpotifyToken()
   
 
   return (
-    <div key={trackUri}>
-    {token&&trackUri&&(<ReactSpotifyPlayer key={trackUri} token={token} uris={trackUri} autoPlay={true}  styles={{
+    <div >
+    {token&&trackUri&&(<ReactSpotifyPlayer key={trackUri} token={token} uris={trackUri} autoPlay={true} name="Sound Aura"  styles={{
     activeColor: '#8568f5',
     bgColor: '#8568f5',
     color: '#fff',

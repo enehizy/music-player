@@ -16,6 +16,8 @@ import Artist from './components/Artist.jsx';
 import Album from './components/Album.jsx';
 import Category from './components/Category.jsx';
 import Search from './components/Search.jsx';
+import Login from './components/Login.jsx';
+import Library from './components/Library.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -29,12 +31,12 @@ createRoot(document.getElementById('root')).render(
            <Route path=':id' element={<Artist/>}/>
          
         </Route>
-        {/* <Route path="playlists" element={<PlayList/>}/> */}
+        <Route path="trending" element={<Trending/>}/>
         <Route path="albums" >
           <Route index element={<Albums/>}/>
            <Route path=':id' element={<Album/>}/>
         </Route>
-        <Route path="trending" element={<Trending/>}/>
+        <Route path="library" element={<Library/>}/>
         {/* <Route path="saved" element={<Saved/>}/>
         <Route path="recent" element={<Recent/>}/> */}
        
@@ -42,6 +44,7 @@ createRoot(document.getElementById('root')).render(
         
       </Route>
       <Route path="*" element={<NotFound/>}/>
+      <Route path="login" element={<Login/>}/> 
      </Routes>
     </BrowserRouter>
 
