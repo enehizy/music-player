@@ -43,10 +43,13 @@ function App() {
         <main className='w-full '>
         {/* <div className='p-10 shadow-md '><button className=' bg-[#1DB954] rounded-xl  font-bold text-sm p-2'>Login with spotify</button>
         </div> */}
-        <Header/>
         <header className='block md:hidden p-2 shadow-md'>
         <NavHeader/>
+        
         </header>
+        <Header/>
+        
+        
        
         
         <div className='h-screen overflow-x-scroll pb-[400px] md:pb-32'>

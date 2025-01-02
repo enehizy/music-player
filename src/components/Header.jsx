@@ -18,8 +18,8 @@ function Header() {
    
     
   return (
-    <div className={`bg-[#edebf7] absolute w-full  z-10  hidden md:block`} >
-         <header className=' flex gap-10  p-5 '>
+    <div className={`bg-[#edebf7] md:absolute w-full  z-10  `} >
+         <div className=' flex gap-2 md:gap-10  p-5 '>
     <button onClick={()=> navigate(-1)} className={`  font-black w-10 h-10  bg-[#8568f5] text-white rounded-full p-1 flex justify-center items-center`}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -33,7 +33,7 @@ function Header() {
 <button disabled={search.length>=3?false:true} className='bg-[#8568f5] text-white  px-2 rounded-full -translate-x-[70px]  disabled:opacity-50' type='submit'>Search</button>
 </form>
 
-</header>
+</div>
   
     </div>
    
