@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 
 function ProtectedRoutes({children}) {
     const token =useSpotifyToken()
-    console.log({token})
+   
   if(token == null || token == undefined){
      return(    <Navigate to="/login"/>)
   }else{
