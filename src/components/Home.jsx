@@ -30,15 +30,13 @@ function Home() {
              })
              console.log({response})
            const tracks= response.data.items
-             if(response.status == "401"){
-                location.href ="/login"
-                return
-             }
+             
              return tracks.slice(0,7)
            }
-           catch(e){
+           catch(err){
+            console.log({error:err.response})
             //  location.href ="/login"
-             throw new Error(e)
+             throw new Error(err)
            }
         },
        

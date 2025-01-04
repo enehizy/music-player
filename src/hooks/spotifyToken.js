@@ -9,24 +9,18 @@ export const useSpotifyToken =()=>{
      React.useEffect(()=>{
         const hash = location.hash;
         const params = new URLSearchParams(hash.substring(1)); 
-        const local_token = localStorage.getItem("token");
+        const local_token = sessionStorage.getItem("token");
         const access_token = params.get("access_token");
-        if(local_token){
-         setToken(local_token)
-         return
-        }
-         if(!access_token && !local_token){
-            navigate("/login")
+       
+         
+         if(local_token && !access_token){
+            setToken(local_token)
             return
-         }
+           }
         setToken(access_token)
     
     if(access_token){
-       localStorage.setItem('token',access_token)
-    }else{
-       
-       LoginToSpotify()
-       
+       sessionStorage.setItem('token',access_token)
     }
     },[token])
     return token

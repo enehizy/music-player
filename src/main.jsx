@@ -18,12 +18,15 @@ import Category from './components/Category.jsx';
 import Search from './components/Search.jsx';
 import Login from './components/Login.jsx';
 import Library from './components/Library.jsx';
+import ProtectedRoutes from './components/ProtectedRoutes.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
      <Routes>
       <Route path="/" element={<App/>}>
-        <Route index element={<Home/>}/>
+        <Route index element={<ProtectedRoutes>
+          <Home/>
+        </ProtectedRoutes>}/>
          <Route path="search" element={<Search/>}/>
         <Route path="artists" >
           <Route index element={<Artists/>}/>
@@ -36,7 +39,9 @@ createRoot(document.getElementById('root')).render(
           <Route index element={<Albums/>}/>
            <Route path=':id' element={<Album/>}/>
         </Route>
-        <Route path="library" element={<Library/>}/>
+        <Route path="library" element={<ProtectedRoutes>
+          <Library/>
+        </ProtectedRoutes>}/>
         {/* <Route path="saved" element={<Saved/>}/>
         <Route path="recent" element={<Recent/>}/> */}
        
