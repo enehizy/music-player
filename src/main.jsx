@@ -27,6 +27,7 @@ createRoot(document.getElementById('root')).render(
         <Route index element={<ProtectedRoutes>
           <Home/>
         </ProtectedRoutes>}/>
+        <Route path="login" element={<Login/>}/> 
          <Route path="search" element={<Search/>}/>
         <Route path="artists" >
           <Route index element={<Artists/>}/>
@@ -49,7 +50,7 @@ createRoot(document.getElementById('root')).render(
         
       </Route>
       <Route path="*" element={<NotFound/>}/>
-      <Route path="login" element={<Login/>}/> 
+    
      </Routes>
     </BrowserRouter>
 
