@@ -80,8 +80,8 @@ function Home() {
     const isLoading =allData.some((data)=>data.isLoading)
    
    return(<div>
-    <PageHeader label="Most Played Songs"/>
-    
+  
+   <PageHeader label="Most Played Songs"/>
     
     {recomendations.isSuccess&&(
     
