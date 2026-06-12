@@ -1,9 +1,8 @@
-import React from 'react'
-import axios from 'axios'
-import { getUserAccessToken,generateToken,getPopularArtistInfo } from '../utils';
-import { useQueries,useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { generateToken, getPopularArtistInfo } from '../utils';
+import { useQueries } from '@tanstack/react-query';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PageHeader from './PageHeader';
 import TrackTable from './TrackTable';
 import Loading from './Loading';
@@ -79,66 +78,61 @@ function Home() {
     const isError =allData.some((data)=>data.isError)
     const isLoading =allData.some((data)=>data.isLoading)
    
-   return(<div>
-  
-   <PageHeader label="Most Played Songs"/>
-    
-    {recomendations.isSuccess&&(
-    
-    <TrackTable tracks={recomendations.data} />
-    )}
+   return (
+       <div>
+           <PageHeader label="Most Played Songs"/>
+           {recomendations.isSuccess&&(
+           
+           <TrackTable tracks={recomendations.data} />
+           )}
+           {artists.isSuccess&&(
+               <div >
+               <div className='mt-10 mx-10 mb-5 flex flex-wrap-reverse justify-between items-center'>
+               <h2 className='font-semibold text-md md:text-2xl text-gray-600 '>Recommended Artists</h2>
+               <Link className='text-[#8568f5] font-semibold md:font-bold 2xl:-translate-x-[100px]' to="/artists">See All</Link>
+               </div>
+               
 
+               <section className='overflow-auto w-full'>
+                       <div className='grid min-w-[1100px]    grid-cols-5 gap-4  px-10 justify-center items-center '>
+                   
+                   {artists.data.map((artist)=>(
+                       <Link to={`/artists/${artist.id}`} className='w-[200px]  gap-5 aspect-auto flex flex-col justify-center items-center'>
+                           <img className='h-[230px]' src={artist.images[0].url}/>
+                           <p className='font-semibold text-lg text-center'>{artist.name}</p>
+                       </Link>
+                   ))}
+                   </div>
+               </section>
+             
+              </div>
+           )}
+           {albums.isSuccess&&(
+               // <div className='mt-10  mx-10'>
+               //     <div className='mt-10  mb-5 flex justify-between items-center'>
+               //     <h2 className='font-semibold text-2xl text-gray-600 '>Recommended Albums</h2>
+               //     <Link className='text-[#8568f5] font-bold 2xl:-translate-x-[100px]' to="/album">See All</Link>
+               //     </div>
+               //     <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 '>
+               //         {albums.data.map((album)=>(
+               //         <div className='w-[200px] aspect-auto flex flex-col gap-3 justify-center items-center'>
+               //             <img src={album.images[0].url} />
+               //             <p className='font-bold text-lg'>{album.artists.map((artist)=>(
+               //                 <span>{artist.name}</span>
+               //             ))}</p>
+               //             <p className='font-semibold text-[#8568f5]'>{album.release_date.split("-")[0]}</p>
+               //         </div>
+               //         ))}
 
-{artists.isSuccess&&(
-    <div >
-    <div className='mt-10 mx-10 mb-5 flex flex-wrap-reverse justify-between items-center'>
-    <h2 className='font-semibold text-md md:text-2xl text-gray-600 '>Recommended Artists</h2>
-    <Link className='text-[#8568f5] font-semibold md:font-bold 2xl:-translate-x-[100px]' to="/artists">See All</Link>
-    </div>
-    
-
-    <section className='overflow-auto w-full'>
-            <div className='grid min-w-[1100px]    grid-cols-5 gap-4  px-10 justify-center items-center '>
-        
-        {artists.data.map((artist)=>(
-            <Link to={`/artists/${artist.id}`} className='w-[200px]  gap-5 aspect-auto flex flex-col justify-center items-center'>
-                <img className='h-[230px]' src={artist.images[0].url}/>
-                <p className='font-semibold text-lg text-center'>{artist.name}</p>
-            </Link>
-        ))}
-        </div>
-    </section>
-  
-   </div>
-)}
-
-
-
-{albums.isSuccess&&(
-    // <div className='mt-10  mx-10'>
-    //     <div className='mt-10  mb-5 flex justify-between items-center'>
-    //     <h2 className='font-semibold text-2xl text-gray-600 '>Recommended Albums</h2>
-    //     <Link className='text-[#8568f5] font-bold 2xl:-translate-x-[100px]' to="/album">See All</Link>
-    //     </div>
-    //     <div className='grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 '>
-    //         {albums.data.map((album)=>(
-    //         <div className='w-[200px] aspect-auto flex flex-col gap-3 justify-center items-center'>
-    //             <img src={album.images[0].url} />
-    //             <p className='font-bold text-lg'>{album.artists.map((artist)=>(
-    //                 <span>{artist.name}</span>
-    //             ))}</p>
-    //             <p className='font-semibold text-[#8568f5]'>{album.release_date.split("-")[0]}</p>
-    //         </div>
-    //         ))}
-
-    //     </div>
-       
-    // </div>
-    <AlbumCard heading="Recommended Albums" albums={albums.data} seeAll/>
-    )}
-    {isLoading&&(<Loading/>)}
-    {isError&&('error finding recommendations')}
-   </div>)
+               //     </div>
+                  
+               // </div>
+               (<AlbumCard heading="Recommended Albums" albums={albums.data} seeAll/>)
+               )}
+           {isLoading&&(<Loading/>)}
+           {isError&&('error finding recommendations')}
+       </div>
+   );
 }
 
 export default Home
